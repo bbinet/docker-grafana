@@ -17,56 +17,23 @@ function (Settings) {
     *  - basic authentication: use url syntax http://username:password@domain:port
     */
 
-    // InfluxDB example setup (the InfluxDB databases specified need to exist)
-    /*
     datasources: {
-      influxdb: {
+      influx: {
         type: 'influxdb',
-        url: "http://my_influxdb_server:8086/db/database_name",
-        username: 'admin',
-        password: 'admin',
+        url: "http://<--INFLUXDB_ADDR-->:8086/db/<--METRICSDB-->",
+        username: "<--METRICSDB_USERNAME-->",
+        password: "<--METRICSDB_PASSWORD-->",
+        default: true
       },
       grafana: {
         type: 'influxdb',
-        url: "http://my_influxdb_server:8086/db/grafana",
-        username: 'admin',
-        password: 'admin',
+        url: "http://<--INFLUXDB_ADDR-->:8086/db/<--GRAFANADB-->",
+        // user must have read/write access to the grafana database
+        username: "<--GRAFANADB_USERNAME-->",
+        password: "<--GRAFANADB_PASSWORD-->",
         grafanaDB: true
-      },
-    },
-    */
-
-    // Graphite & Elasticsearch example setup
-    /*
-    datasources: {
-      graphite: {
-        type: 'graphite',
-        url: "http://my.graphite.server.com:8080",
-      },
-      elasticsearch: {
-        type: 'elasticsearch',
-        url: "http://my.elastic.server.com:9200",
-        index: 'grafana-dash',
-        grafanaDB: true,
       }
     },
-    */
-
-    // OpenTSDB & Elasticsearch example setup
-    /*
-    datasources: {
-      opentsdb: {
-        type: 'opentsdb',
-        url: "http://opentsdb.server:4242",
-      },
-      elasticsearch: {
-        type: 'elasticsearch',
-        url: "http://my.elastic.server.com:9200",
-        index: 'grafana-dash',
-        grafanaDB: true,
-      }
-    },
-    */
 
     /* Global configuration options
     * ========================================================
@@ -89,21 +56,21 @@ function (Settings) {
 
     // If you want to specify password before saving, please specify it bellow
     // The purpose of this password is not security, but to stop some users from accidentally changing dashboards
-    admin: {
-      password: ''
-    },
+    // admin: {
+    //   password: ''
+    // },
 
     // Change window title prefix from 'Grafana - <dashboard title>'
-    window_title_prefix: 'Grafana - ',
+    window_title_prefix: 'HeliosLite - ',
 
     // Add your own custom panels
-    plugins: {
-      // list of plugin panels
-      panels: [],
-      // requirejs modules in plugins folder that should be loaded
-      // for example custom datasources
-      dependencies: [],
-    }
+    // plugins: {
+    //   // list of plugin panels
+    //   panels: [],
+    //   // requirejs modules in plugins folder that should be loaded
+    //   // for example custom datasources
+    //   dependencies: [],
+    // }
 
   });
 });
