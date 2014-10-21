@@ -27,8 +27,8 @@ configure_influxdb() {
         echo "=> Program terminated!"
         exit 1
     fi
-    metricsdb_password="${METRICSDB}_${METRICSDB_USER}_PASSWORD"
-    grafanadb_password="${GRAFANADB}_${GRAFANADB_USER}_PASSWORD"
+    metricsdb_password="INFLUXDB_ENV_${METRICSDB}_${METRICSDB_USER}_PASSWORD"
+    grafanadb_password="INFLUXDB_ENV_${GRAFANADB}_${GRAFANADB_USER}_PASSWORD"
     if [ -z "${!metricsdb_password}" ] || [ -z "${!grafanadb_password}" ]; then
         echo "=> Aborting: the following 2 environment variables must be set:"
         echo "   - ${metricsdb_password}"
