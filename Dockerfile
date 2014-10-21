@@ -4,7 +4,7 @@ MAINTAINER Bruno Binet <bruno.binet@gmail.com>
 ENV GRAFANA_VERSION 1.8.1
 
 RUN apt-get update && \
-    apt-get install -y nginx wget apache2-utils && \
+    apt-get install -y nginx-light wget apache2-utils && \
     wget http://grafanarel.s3.amazonaws.com/grafana-${GRAFANA_VERSION}.tar.gz -O grafana.tar.gz && \
     tar zxf grafana.tar.gz -C /data && \
     rm grafana.tar.gz && \
