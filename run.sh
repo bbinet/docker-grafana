@@ -24,11 +24,11 @@ configure_basicauth() {
 configure_influxdb() {
     if [ -z "${METRICSDB}" ] || [ -z "${GRAFANADB}" ] ||
        [ -z "${METRICSDB_USER}" ] || [ -z "${GRAFANADB_USER}" ] ||
-       [ -z "${INFLUXDB_PORT_8086_TCP_ADDR}" ] ; then
+       [ -z "${INFLUXDB_HOST}" ] ; then
         echo "=> Aborting: the following 5 environment variables must be set:"
         echo "   - METRICSDB & METRICSDB_USER"
         echo "   - GRAFANADB & GRAFANADB_USER"
-        echo "   - INFLUXDB_PORT_8086_TCP_ADDR"
+        echo "   - INFLUXDB_HOST"
         abort
     fi
     metricsdb_password="INFLUXDB_ENV_${METRICSDB}_${METRICSDB_USER}_PASSWORD"
@@ -40,7 +40,7 @@ configure_influxdb() {
         abort
     fi
     echo "=> Configuring InfluxDB..."
-    sed -e "s/<--INFLUXDB_ADDR-->/${INFLUXDB_PORT_8086_TCP_ADDR}/g" \
+    sed -e "s/<--INFLUXDB_HOST-->/${INFLUXDB_HOST}/g" \
         -e "s/<--METRICSDB-->/${METRICSDB}/g" \
         -e "s/<--METRICSDB_USERNAME-->/${METRICSDB_USER}/g" \
         -e "s/<--METRICSDB_PASSWORD-->/${!metricsdb_password}/g" \
