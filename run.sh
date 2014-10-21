@@ -2,14 +2,19 @@
 
 set -e
 
+abort() {
+    echo "=> Environment was:"
+    env
+    echo "=> Program terminated!"
+    exit 1
+}
 
 configure_basicauth() {
     if [ -z "${HTTP_USER}" ] || [ -z "${HTTP_PASSWORD}" ]; then
         echo "=> Aborting: the following 2 environment variables must be set:"
         echo "   - HTTP_USER"
         echo "   - HTTP_PASSWORD"
-        echo "=> Program terminated!"
-        exit 1
+        abort
     else
         echo "=> Configuring basic auth for ${HTTP_USER} / ${HTTP_PASSWORD}."
         htpasswd -b -c /data/.htpasswd "${HTTP_USER}" "${HTTP_PASSWORD}"
@@ -24,8 +29,7 @@ configure_influxdb() {
         echo "   - METRICSDB & METRICSDB_USER"
         echo "   - GRAFANADB & GRAFANADB_USER"
         echo "   - INFLUXDB_PORT_8086_TCP_ADDR"
-        echo "=> Program terminated!"
-        exit 1
+        abort
     fi
     metricsdb_password="INFLUXDB_ENV_${METRICSDB}_${METRICSDB_USER}_PASSWORD"
     grafanadb_password="INFLUXDB_ENV_${GRAFANADB}_${GRAFANADB_USER}_PASSWORD"
@@ -33,8 +37,7 @@ configure_influxdb() {
         echo "=> Aborting: the following 2 environment variables must be set:"
         echo "   - ${metricsdb_password}"
         echo "   - ${grafanadb_password}"
-        echo "=> Program terminated!"
-        exit 1
+        abort
     fi
     echo "=> Configuring InfluxDB..."
     sed -e "s/<--INFLUXDB_ADDR-->/${INFLUXDB_PORT_8086_TCP_ADDR}/g" \
