@@ -16,6 +16,9 @@ RUN apt-get update && \
 ADD config.template.js /config.template.js
 ADD nginx.config /etc/nginx/sites-enabled/default
 
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
+
 # Environment variables for configuring InfluxDB datasources
 #ENV METRICSDB metrics
 #ENV METRICSDB_USER user
@@ -25,7 +28,6 @@ ADD nginx.config /etc/nginx/sites-enabled/default
 #ENV HTTP_USER grafana
 #ENV HTTP_PASSWORD mypass
 
-ADD run.sh /run.sh
-RUN chmod +x /run.sh
+EXPOSE 80
 
 CMD ["/run.sh"]
