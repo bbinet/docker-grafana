@@ -37,7 +37,8 @@ environment variables:
 Then when starting your InfluxDB container, you will want to bind ports `80`
 from the Grafana container to the host external ports.
 The container should also be linked with the InfluxDB container so that it can
-read its ip address and user password from the environment variables.
+read the InfluxDB host ip address and the users passwords from the environment
+variables.
 
 For example:
 
