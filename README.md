@@ -24,7 +24,6 @@ You can configure the Grafana running container with the following required
 environment variables:
 
 
-- `INFLUXDB_HOST`: InfluxDB  host or ip address that grafana should query.
 - `METRICSDB`: InfluxDB database in which grafana should query the metrics.
 - `METRICSDB_USER`: Username to use to connect to the above database (the
   password will be read from InfluxDB docker environment variables).
@@ -47,7 +46,6 @@ For example:
     $ docker run --name grafana \
           --link influxdb:influxdb \
           -p 80:80 \
-          -e INFLUXDB_HOST=sandbox.influxdb.com \
           -e METRICSDB=metrics \
           -e METRICSDB_USER=user \
           -e GRAFANADB=grafana \

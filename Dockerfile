@@ -20,7 +20,6 @@ ADD run.sh /run.sh
 RUN chmod +x /run.sh
 
 # Environment variables for configuring InfluxDB datasources
-#ENV INFLUXDB_HOST stats.helioslite.net
 #ENV METRICSDB metrics
 #ENV METRICSDB_USER user
 #ENV GRAFANADB grafana
