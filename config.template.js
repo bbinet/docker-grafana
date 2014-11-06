@@ -20,14 +20,14 @@ function (Settings) {
     datasources: {
       influx: {
         type: 'influxdb',
-        url: "http://<--INFLUXDB_HOST-->:8086/db/<--METRICSDB-->",
+        url: "/db/<--METRICSDB-->",
         username: "<--METRICSDB_USERNAME-->",
         password: "<--METRICSDB_PASSWORD-->",
         default: true
       },
       grafana: {
         type: 'influxdb',
-        url: "http://<--INFLUXDB_HOST-->:8086/db/<--GRAFANADB-->",
+        url: "/db/<--GRAFANADB-->",
         // user must have read/write access to the grafana database
         username: "<--GRAFANADB_USERNAME-->",
         password: "<--GRAFANADB_PASSWORD-->",
