@@ -44,7 +44,7 @@ For example:
 
     $ docker pull bbinet/grafana
 
-    $ docker run --name influxdb \
+    $ docker run --name grafana \
           --link influxdb:influxdb \
           -p 80:80 \
           -e INFLUXDB_HOST=sandbox.influxdb.com \
