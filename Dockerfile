@@ -1,7 +1,7 @@
 FROM debian:wheezy
 MAINTAINER Bruno Binet <bruno.binet@gmail.com>
 
-ENV GRAFANA_VERSION 1.8.1
+ENV GRAFANA_VERSION 1.9.0-rc1
 
 RUN apt-get update && \
     apt-get install -y nginx-light wget apache2-utils && \
